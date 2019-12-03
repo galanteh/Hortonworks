@@ -1,0 +1,23 @@
+#!/bin/bash -x
+sudo echo never > /sys/kernel/mm/transparent_hugepage/enabled
+sudo echo never > /sys/kernel/mm/transparent_hugepage/defrag
+sudo yum -y install epel-release
+sudo yum -y update
+sudo yum install -y net-tools vim reposync curl wget unzip zip chkconfig tar openssh-clients ntp
+sudo systemctl enable ntpd
+sudo systemctl start ntpd
+sudo echo  "vm.swappiness = 1" >> /etc/sysctl.conf
+sudo sysctl vm.swappiness=1
+sudo sh -c "ulimit -n 10000 && exec su $LOGNAME"
+sudo systemctl disable firewalld
+sudo systemctl stop firewalld
+sudo systemctl mask --now firewalld
+sudo sed -i s/^SELINUX=.*$/SELINUX=disabled/ /etc/selinux/config
+setenforce 0
+sudo adduser admin
+sudo mkdir -p /home/admin/.ssh
+sudo chmod 700 /home/admin/.ssh
+sudo touch /home/admin/.ssh/authorized_keys
+sudo chmod 600 /home/admin/.ssh/authorized_keys
+sudo chown -R admin:admin /home/admin/.ssh
+sudo bash -c "echo 'admin ALL=(ALL)  NOPASSWD: ALL' > /etc/sudoers.d/admin"
