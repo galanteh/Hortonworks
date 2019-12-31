@@ -80,8 +80,9 @@ All scripts developed on this repo are only for CentOS 7.x
 |---|---|
 | Documentation | https://docs.cloudera.com/HDPDocuments/Ambari-2.7.4.0/bk_ambari-installation/content/hdp_314_repositories.html | 
 | CentOS 7 Repo | http://public-repo-1.hortonworks.com/HDP/centos7/3.x/updates/3.1.4.0/hdp.repo |
-### ​HDP 3.1.5 Repositories
+### HDP 3.1.5 Repositories
 Starting with the **HDP 3.1.5** release, access to HDP repositories requires authentication. To access the binaries, you must first have the required authentication credentials (**username** and **password**).
+
 | Description | URL | 
 |---|---|
 | Documentation | https://docs.cloudera.com/HDPDocuments/Ambari-2.7.5.0/bk_ambari-installation/content/hdp_315_repositories.html |
