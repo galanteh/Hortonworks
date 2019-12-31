@@ -57,6 +57,17 @@ All scripts developed on this repo are only for CentOS 7.x
 | Documentation |  https://docs.cloudera.com/HDPDocuments/Ambari-2.6.2.2/bk_ambari-installation/content/hdp_26_repositories.html | 
 | CentOS 7 Repo | http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.6.2.2/ambari.repo |
 
+#### Troubleshooting
+##### SSL Error
+ If you get an error while installing the cluster or a node to HDP like **SSLError: Failed to connect. Please check openssl library versions**, please edit the configuration on all nodes for the agent
+ ```
+# vi /etc/ambari-agent/conf/ambari-agent.ini
+force_https_protocol=PROTOCOL_TLSv1_2
+```
+Please refer to the following article for more information:
+https://techtalks.tech/knowledge-base/error-while-adding-a-node-to-hdp-sslerror-failed-to-connect-please-check-openssl-library-versions/
+
+
 ### ​HDP 3.0.0 Repositories
 | Description | URL | 
 |---|---|
