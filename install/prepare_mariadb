@@ -65,4 +65,4 @@ sudo tar zxf ~/mysql-connector-java-5.1.46.tar.gz -C ~
 sudo mkdir -p /usr/share/java/
 sudo cp ~/mysql-connector-java-5.1.46/mysql-connector-java-5.1.46-bin.jar /usr/share/java/mysql-connector-java.jar
 
-ambari-server setup --jdbc-db=mysql --jdbc-driver=/usr/share/java/mysql-connector-java.jar
+sudo ambari-server setup --jdbc-db=mysql --jdbc-driver=/usr/share/java/mysql-connector-java.jar
