@@ -38,13 +38,14 @@ GRANT ALL PRIVILEGES ON *.* TO 'ranger'@'localhost';
 FLUSH PRIVILEGES;
 
 CREATE DATABASE IF NOT EXISTS rangerkms DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
-GRANT ALL ON rangerkms.* TO 'rangerkms'@'%' IDENTIFIED BY 'cloudera' with grant option;;
-
+GRANT ALL ON rangerkms.* TO 'rangerkms'@'%' IDENTIFIED BY 'cloudera' with grant option;
 CREATE USER IF NOT EXISTS 'rangerkms'@'%' IDENTIFIED BY 'cloudera';
 GRANT ALL PRIVILEGES ON *.* TO 'rangerkms'@'%' with grant option;
 CREATE USER IF NOT EXISTS 'rangerkms'@'localhost' IDENTIFIED BY 'cloudera';
 GRANT ALL PRIVILEGES ON *.* TO 'rangerkms'@'localhost'with grant option;
 
+CREATE DATABASE IF NOT EXISTS oozie DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+GRANT ALL ON oozie.* TO 'oozie'@'%' IDENTIFIED BY 'cloudera' with grant option;
 CREATE USER IF NOT EXISTS 'oozie'@'%' IDENTIFIED BY 'cloudera';
 GRANT ALL PRIVILEGES ON *.* TO 'oozie'@'%' with grant option;
 CREATE USER IF NOT EXISTS 'oozie'@'localhost' IDENTIFIED BY 'cloudera';
