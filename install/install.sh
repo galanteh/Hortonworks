@@ -11,6 +11,9 @@ fi
 n=$START
 echo "127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4" > hosts
 echo "::1         localhost localhost.localdomain localhost6 localhost6.localdomain6" >> hosts
+if [ "$CLOUD_PROVIDER" = "GCP" ] ; then
+	echo "169.254.169.254 metadata.google.internal" >> hosts
+fi
 while [[ $n -le $NUMINSTANCES ]]; do
 	HOST=$HOSTPREFIX$n$DOMAIN
 	IP=$(nslookup $HOST | awk '/^Address: / { print $2 }')

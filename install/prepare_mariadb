@@ -18,31 +18,31 @@ sudo systemctl enable mariadb
 sudo systemctl start mariadb
 
 sudo mysql -u root << EOF
-CREATE DATABASE hive DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+CREATE DATABASE IF NOT EXISTS hive DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 GRANT ALL ON hive.* TO 'hive'@'%' IDENTIFIED BY 'cloudera';
 
-CREATE USER 'hive'@'%' IDENTIFIED BY 'cloudera';
+CREATE USER IF NOT EXISTS 'hive'@'%' IDENTIFIED BY 'cloudera';
 GRANT ALL PRIVILEGES ON *.* TO 'hive'@'%';
-CREATE USER 'hive'@'localhost' IDENTIFIED BY 'cloudera';
+CREATE USER IF NOT EXISTS 'hive'@'localhost' IDENTIFIED BY 'cloudera';
 GRANT ALL PRIVILEGES ON *.* TO 'hive'@'localhost';
 FLUSH PRIVILEGES;
 
-CREATE DATABASE ranger DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+CREATE DATABASE IF NOT EXISTS ranger DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 GRANT ALL ON ranger.* TO 'ranger'@'%' IDENTIFIED BY 'cloudera';
 
-CREATE USER 'ranger'@'%' IDENTIFIED BY 'cloudera';
+CREATE USER IF NOT EXISTS 'ranger'@'%' IDENTIFIED BY 'cloudera';
 GRANT ALL PRIVILEGES ON *.* TO 'ranger'@'%' with grant option;
 
-CREATE USER 'ranger'@'localhost' IDENTIFIED BY 'cloudera';
+CREATE USER IF NOT EXISTS 'ranger'@'localhost' IDENTIFIED BY 'cloudera';
 GRANT ALL PRIVILEGES ON *.* TO 'ranger'@'localhost';
 FLUSH PRIVILEGES;
 
-CREATE DATABASE rangerkms DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+CREATE DATABASE IF NOT EXISTS rangerkms DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 GRANT ALL ON rangerkms.* TO 'rangerkms'@'%' IDENTIFIED BY 'cloudera' with grant option;;
 
-CREATE USER 'rangerkms'@'%' IDENTIFIED BY 'cloudera';
+CREATE USER IF NOT EXISTS 'rangerkms'@'%' IDENTIFIED BY 'cloudera';
 GRANT ALL PRIVILEGES ON *.* TO 'rangerkms'@'%' with grant option;
-CREATE USER 'rangerkms'@'localhost' IDENTIFIED BY 'cloudera';
+CREATE USER IF NOT EXISTS 'rangerkms'@'localhost' IDENTIFIED BY 'cloudera';
 GRANT ALL PRIVILEGES ON *.* TO 'rangerkms'@'localhost'with grant option;
 
 set @@global.innodb_large_prefix = 1;
