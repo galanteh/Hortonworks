@@ -51,7 +51,8 @@ GRANT ALL PRIVILEGES ON *.* TO 'oozie'@'%' with grant option;
 CREATE USER IF NOT EXISTS 'oozie'@'localhost' IDENTIFIED BY 'cloudera';
 GRANT ALL PRIVILEGES ON *.* TO 'oozie'@'localhost'with grant option;
 
-set @@global.innodb_large_prefix = 1;
+SET @@global.innodb_large_prefix = 1;
+SET GLOBAL innodb_default_row_format=DYNAMIC;
 
 FLUSH PRIVILEGES;
 
