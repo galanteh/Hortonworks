@@ -5,7 +5,7 @@ if [ "$GENERATE_KEYS" = "Y" ] ; then
 	mkdir .ssh
 	chmod 700 .ssh
 	ssh-keygen -f .ssh/id_rsa -t rsa -N ""
-	cat .ssh/id_rsa.pub >> authorized_keys
+	cat .ssh/id_rsa.pub >> .ssh/authorized_keys
 fi
 
 n=$START
@@ -32,7 +32,9 @@ while [[ $n -le $NUMINSTANCES ]]; do
         sshpass -p $PASSWORD scp -o StrictHostKeyChecking=no -o ServerAliveInterval=30 hosts $USER@$HOST:/etc/hosts_cluster
 	echo 'Rebooting ... ' $HOST
 	sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=30 $USER@$HOST << EOF
+sudo chown -R admin:admin /home/admin/.ssh
 sudo chmod 600 /home/admin/.ssh/authorized_keys
+sudo bash -c "echo 'admin  ALL=(ALL)  NOPASSWD: ALL' > /etc/sudoers.d/admin"
 sudo hostname $HOST
 sudo mv /etc/hosts /etc/hosts_original
 sudo mv /etc/hosts_cluster /etc/hosts

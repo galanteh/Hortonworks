@@ -25,16 +25,22 @@ CREATE USER IF NOT EXISTS 'hive'@'%' IDENTIFIED BY 'cloudera';
 GRANT ALL PRIVILEGES ON *.* TO 'hive'@'%';
 CREATE USER IF NOT EXISTS 'hive'@'localhost' IDENTIFIED BY 'cloudera';
 GRANT ALL PRIVILEGES ON *.* TO 'hive'@'localhost';
+
+SET GLOBAL innodb_large_prefix=on;
+SET GLOBAL innodb_default_row_format=DYNAMIC;
+SET GLOBAL innodb_file_format=Barracuda;
 FLUSH PRIVILEGES;
 
 CREATE DATABASE IF NOT EXISTS ranger DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 GRANT ALL ON ranger.* TO 'ranger'@'%' IDENTIFIED BY 'cloudera';
-
 CREATE USER IF NOT EXISTS 'ranger'@'%' IDENTIFIED BY 'cloudera';
 GRANT ALL PRIVILEGES ON *.* TO 'ranger'@'%' with grant option;
-
 CREATE USER IF NOT EXISTS 'ranger'@'localhost' IDENTIFIED BY 'cloudera';
 GRANT ALL PRIVILEGES ON *.* TO 'ranger'@'localhost';
+
+SET GLOBAL innodb_large_prefix=on;
+SET GLOBAL innodb_default_row_format=DYNAMIC;
+SET GLOBAL innodb_file_format=Barracuda;
 FLUSH PRIVILEGES;
 
 CREATE DATABASE IF NOT EXISTS rangerkms DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
@@ -44,6 +50,11 @@ GRANT ALL PRIVILEGES ON *.* TO 'rangerkms'@'%' with grant option;
 CREATE USER IF NOT EXISTS 'rangerkms'@'localhost' IDENTIFIED BY 'cloudera';
 GRANT ALL PRIVILEGES ON *.* TO 'rangerkms'@'localhost'with grant option;
 
+SET GLOBAL innodb_large_prefix=on;
+SET GLOBAL innodb_default_row_format=DYNAMIC;
+SET GLOBAL innodb_file_format=Barracuda;
+FLUSH PRIVILEGES;
+
 CREATE DATABASE IF NOT EXISTS oozie DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 GRANT ALL ON oozie.* TO 'oozie'@'%' IDENTIFIED BY 'cloudera' with grant option;
 CREATE USER IF NOT EXISTS 'oozie'@'%' IDENTIFIED BY 'cloudera';
@@ -51,9 +62,21 @@ GRANT ALL PRIVILEGES ON *.* TO 'oozie'@'%' with grant option;
 CREATE USER IF NOT EXISTS 'oozie'@'localhost' IDENTIFIED BY 'cloudera';
 GRANT ALL PRIVILEGES ON *.* TO 'oozie'@'localhost'with grant option;
 
-SET @@global.innodb_large_prefix = 1;
+SET GLOBAL innodb_large_prefix=on;
 SET GLOBAL innodb_default_row_format=DYNAMIC;
+SET GLOBAL innodb_file_format=Barracuda;
+FLUSH PRIVILEGES;
 
+CREATE DATABASE IF NOT EXISTS registry DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+GRANT ALL ON registry.* TO 'registry'@'%' IDENTIFIED BY 'cloudera' with grant option;
+CREATE USER IF NOT EXISTS 'registry'@'%' IDENTIFIED BY 'cloudera';
+GRANT ALL PRIVILEGES ON *.* TO 'registry'@'%' with grant option;
+CREATE USER IF NOT EXISTS 'registry'@'localhost' IDENTIFIED BY 'cloudera';
+GRANT ALL PRIVILEGES ON *.* TO 'registry'@'localhost'with grant option;
+
+SET GLOBAL innodb_large_prefix=on;
+SET GLOBAL innodb_default_row_format=DYNAMIC;
+SET GLOBAL innodb_file_format=Barracuda;
 FLUSH PRIVILEGES;
 
 EOF

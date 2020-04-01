@@ -125,4 +125,12 @@ All scripts developed on this repo are only for CentOS 7.x
 | 3.4.0.0-155 |https://docs.cloudera.com/HDPDocuments/HDF3/HDF-3.4.0/release-notes/content/hdf_repository_locations.html | [http://public-repo-1.hortonworks.com/HDF/centos7/3.x/updates/3.4.0.0/tars/hdf_ambari_mp/hdf-ambari-mpack-3.4.0.0-155.tar.gz](http://public-repo-1.hortonworks.com/HDF/centos7/3.x/updates/3.4.0.0/tars/hdf_ambari_mp/hdf-ambari-mpack-3.4.0.0-155.tar.gz)| 
 | 3.4.1.1-4 | https://docs.cloudera.com/HDPDocuments/HDF3/HDF-3.4.1.1/release-notes/content/hdf_repository_locations.html| http://public-repo-1.hortonworks.com/HDF/centos7/3.x/updates/3.4.1.1/tars/hdf_ambari_mp/hdf-ambari-mpack-3.4.1.1-4.tar.gz | 
 
+# Troubleshooting
+## Forgot Ranger password
+If you want to change it, first, you need to change it in Ranger and after that on Ambari. If you forgot the password on ranger, go to the mysql database and execute the following SQL rto reset to defaul: admin
+```
+use ranger;
+update x_portal_user set password = 'ceb4f32325eda6142bd65215f4c0f371' where login_id = 'admin';
+``` 
+
 
